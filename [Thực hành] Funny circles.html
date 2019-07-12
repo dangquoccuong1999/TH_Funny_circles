@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3"></canvas>
+<script>
+    let Circle = function (x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    function getRamdom() {
+        return Math.floor(Math.random() * 255);
+    }
+
+    function getRamdomColor() {
+        let colorNumber1 = getRamdom();
+        let colorNumber2 = getRamdom();
+        let colorNumber3 = getRamdom();
+        return "rgb(" + colorNumber1 + ',' + colorNumber2 + ',' + colorNumber3 + ")";
+    }
+
+    function createCircle() {
+        let ctx = document.getElementById('myCanvas').getContext("2d");
+        let radius = Math.floor(Math.random() * 100); // bán kính ngẫu nhiên
+        let color = getRamdomColor(); // lấy màu ngẫu nhiên
+        let x = Math.random() * 768;//window.innerWidth;
+        let y = Math.random() * 1368;//window.innerHeight;
+
+        let cirle = new Circle(x, y, radius);
+        ctx.beginPath();
+        ctx.arc(cirle.x, cirle.y, cirle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    function creatCircles() {
+        for (let i = 0; i < 20; i++) {
+            createCircle()
+        }
+    }
+    creatCircles();
+
+</script>
+</body>
+</html>
